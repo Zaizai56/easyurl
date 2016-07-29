@@ -1,0 +1,25 @@
+{
+  "name": "easyurl",
+  "version": "1.0.0",
+  "description": "URL shortener - FCC",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "easyurl"
+  },
+  "keywords": [
+    "FCC",
+    "FreeCodeCamp",
+    "url-shortener",
+    "node.js",
+    "expressjs"
+  ],
+  "author": "ZaiZai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
