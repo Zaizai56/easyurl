@@ -3,8 +3,6 @@ var app = express();
 var mongo = require('mongodb').MongoClient;
 var tools = require('./app/api/tools');
 
-console.log("app running");
-
 var port = process.env.PORT || 8080; // set our port
 
 app.use(express.static(__dirname + "/app/public"));
@@ -19,22 +17,17 @@ app.get('/:url', function(req, res){
                 _id : 0
             }).toArray(function(err, documents) {
                 if (err) res.send("invalid easyurl")
-                console.log(documents)
                 var redirectUrl = "http://" + documents[0].fullUrl;
                 if (redirectUrl.indexOf("http") > -1) redirectUrl = "http://" + redirectUrl;
-                console.log("redirecting user to " + redirectUrl)
             res.redirect(redirectUrl);
         })
         } else {
             if (err) throw err;
             var id = tools.makeid();
-            console.log("get request passed");
             var newUrl = {short : id,fullUrl : url};
             JSON.stringify(newUrl);
             db.collection('url').insert(newUrl, function(err, data) {
                 if (err) throw err;
-                console.log(JSON.stringify(newUrl));
-                console.log("connection to mongodb established");
                 res.send(newUrl);
                 db.close();
             });
