@@ -6,6 +6,8 @@ var tools = require('./app/api/tools');
 var ip = process.env.IP;
 var port = process.env.PORT || 8080; // set our port
 
+app.use(express.static(__dirname + "/app/public"));
+
 app.get('/:url', function(req, res){
     var url = req.url.substring(1);
     mongo.connect('mongodb://localhost:27017/easyurl', function(err, db) {
