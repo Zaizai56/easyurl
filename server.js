@@ -18,8 +18,8 @@ app.get('/:url', function(req, res){
                 _id : 0
             }).toArray(function(err, documents) {
                 if (err) res.send("invalid easyurl")
-                var redirectUrl = "http://" + documents[0].fullUrl;
-                if (redirectUrl.indexOf("http") > -1) redirectUrl = "http://" + redirectUrl;
+                var redirectUrl = documents[0].fullUrl;
+                if (redirectUrl.indexOf("http") > -1) redirectUrl = redirectUrl;
             res.redirect(redirectUrl);
         })
         } else {
