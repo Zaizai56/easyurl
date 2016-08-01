@@ -19,7 +19,7 @@ app.get('/:url', function(req, res){
             }).toArray(function(err, documents) {
                 if (err) res.send("invalid easyurl")
                 var redirectUrl = documents[0].fullUrl;
-                if (redirectUrl.indexOf("http") > -1) redirectUrl = redirectUrl;
+                if (redirectUrl.indexOf("http") == -1) redirectUrl = "http://" + redirectUrl;
             res.redirect(redirectUrl);
         })
         } else {
