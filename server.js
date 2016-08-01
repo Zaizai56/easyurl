@@ -28,6 +28,8 @@ app.get('/:url', function(req, res){
             JSON.stringify(newUrl);
             db.collection('url').insert(newUrl, function(err, data) {
                 if (err) throw err;
+                var newUrl = {short : id,fullUrl : url};
+                JSON.stringify(newUrl);
                 res.send(newUrl);
                 db.close();
             });
