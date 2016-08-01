@@ -9,7 +9,8 @@ app.use(express.static(__dirname + "/app/public"));
 
 app.get('/:url', function(req, res){
     var url = req.url.substring(1);
-    mongo.connect('mongodb://localhost:27017/easyurl', function(err, db) {
+    mongo.connect('mongodb://ZaiZai:orffyreus88@ds042379.mlab.com:42379/easyurl', function(err, db) {
+        if (err) throw err;
         if (url.indexOf(".") == -1){
             db.collection('url').find({
                 short: url
@@ -22,7 +23,6 @@ app.get('/:url', function(req, res){
             res.redirect(redirectUrl);
         })
         } else {
-            if (err) throw err;
             var id = tools.makeid();
             var newUrl = {short : id,fullUrl : url};
             JSON.stringify(newUrl);
