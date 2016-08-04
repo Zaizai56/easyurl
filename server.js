@@ -9,7 +9,7 @@ app.use(express.static(__dirname + "/app/public"));
 
 app.get('/:url', function(req, res){
     var url = req.url.substring(1);
-    mongo.connect('mongodb://ZaiZai:orffyreus88@ds042379.mlab.com:42379/easyurl', function(err, db) {
+    mongo.connect('mongodb://user:zaizai@ds042379.mlab.com:42379/easyurl', function(err, db) {
         if (err) throw err;
         if (url.indexOf(".") == -1){
             db.collection('url').find({
@@ -28,8 +28,6 @@ app.get('/:url', function(req, res){
             JSON.stringify(newUrl);
             db.collection('url').insert(newUrl, function(err, data) {
                 if (err) throw err;
-                var newUrl = {short : id,fullUrl : url};
-                JSON.stringify(newUrl);
                 res.send(newUrl);
                 db.close();
             });
